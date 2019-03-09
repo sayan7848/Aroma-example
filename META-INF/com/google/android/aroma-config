@@ -1,0 +1,340 @@
+﻿########################################################## AROMA CONFIG ##########################################################
+
+ini_set("force_colorspace","rgba");
+
+##
+# Screen Resolution
+#
+ini_set("dp","5"); #-- XXHDPI ( 1920x1080 / WVGA )
+
+##
+# Initializing Information
+#
+ini_set("rom_name",             "DU-UNOFFICIAL");
+ini_set("rom_version",          "13.x");
+ini_set("rom_author",           "ThhT");
+ini_set("rom_device",           "Mido");
+ini_set("rom_date",             "09/03/2018");
+
+##
+# Show Animated Splash
+#
+anisplash(
+#  #-- Number of Loop
+    4,
+#-- Frame  [ Image, duration in millisecond ]
+    "anim/a1", 30,
+    "anim/a2", 30,
+    "anim/a3", 30,
+    "anim/a4", 30,
+    "anim/a5", 30,
+    "anim/a6", 30
+);
+
+##
+# Font Selection
+#
+fontresload( "0", "ttf/Roboto-Regular.ttf;ttf/DroidSansArabic.ttf;ttf/DroidSansFallback.ttf;", "12" ); #-- Use sets of font (Font Family)
+
+##
+# SHOW LANGUAGE SELECTION
+#
+selectbox(
+  #-- Title
+    "Select Language", 
+  #-- Sub Title
+    "Please select installer language that you want to use while Installing ROM",
+  #-- Icon:
+    "@default",
+  #-- Will be saved in /tmp/aroma/lang.prop
+    "lang.prop",
+  
+    "English",            "Welcome to Installer",                                        1,      #-- selected.0 = 1
+    "Indonesian",         "Selamat datang di Installer",                                 0,      #-- selected.0 = 2
+    "Espanol",            "Bienvenido al Instalador",                                    0,      #-- selected.0 = 3
+    "Simplified Chinesse","欢迎到安装",                                                   0,      #-- selected.0 = 4
+    "Arabic",             "مرحبا بكم في المثبت",                                         0,      #-- selected.0 = 5        
+    "French",             "Bienvenue dans l'installateur",                               0,      #-- selected.0 = 6
+    "Russian",            "Добро пожаловать в установщик",                               0,      #-- selected.0 = 7
+	"Italian",            "Benvenuti Installer",                                         0,      #-- selected.0 = 8
+	"Hebrew",             "ברוכים הבאים להתקנה",							    	     0,		 #-- selected.0 = 9
+	"Germany",            "Willkommen bei Installer",									 0 		 #-- selected.0 = 10
+);
+
+##
+# SET LANGUAGE & FONT FAMILY
+#
+if prop("lang.prop","selected.0")=="1" then
+  loadlang("langs/en.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" ); #-- "0" = Small Font ( Look at Fonts & UNICODE Demo Below )
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" ); #-- "1" = Big Font
+endif;
+
+if prop("lang.prop","selected.0")=="2" then
+  loadlang("langs/id.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="3" then
+  loadlang("langs/es.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="4" then
+  loadlang("langs/cn.lang");
+  fontresload( "0", "ttf/DroidSansFallback.ttf;ttf/Roboto-Regular.ttf", "12" ); 
+  fontresload( "1", "ttf/DroidSansFallback.ttf;ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="5" then
+  loadlang("langs/ar.lang");
+  fontresload( "0", "ttf/DroidSansArabic.ttf;ttf/Roboto-Regular.ttf", "12" ); 
+  fontresload( "1", "ttf/DroidSansArabic.ttf;ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="6" then
+  loadlang("langs/fr.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="7" then
+  loadlang("langs/ru.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="8" then
+  loadlang("langs/it.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="9" then
+  loadlang("langs/he.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+if prop("lang.prop","selected.0")=="10" then
+  loadlang("langs/de.lang");
+  fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+  fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+endif;
+
+##
+#   SELECT THEME
+#
+selectbox(
+  #-- Title
+    "Theme Selector",  
+  #-- Sub Title
+    "Select a theme for the installer",
+  #-- Icon:
+    "@personalize",
+  #-- Will be saved in /tmp/aroma/theme.prop
+    "theme.prop",
+  
+    "Generic",            "Unthemed AROMA Installer",                                    0,      #-- selected.0 = 1
+    "MIUI Theme",         "MIUI Theme by mickey-r & amarullz",                           0,      #-- selected.0 = 2
+    "NXT Theme",          "NXT Theme by Pranav Pandey",                                  0,      #-- selected.0 = 3
+    "NextGen Theme",      "NextGen Theme by amarullz edit by Ayush",                     0,      #-- selected.0 = 4
+    "Sense Theme",        "HTC Sense Theme by amarullz",                                 0,      #-- selected.0 = 5
+    "Honami Theme",       "Xperia i1 Theme by Ayush",                                    1       #-- selected.0 = 6
+);
+
+##
+# SET THEME
+#
+if prop("theme.prop","selected.0")=="2" then
+  theme("miui");
+endif;
+
+if prop("theme.prop","selected.0")=="3" then
+  theme("xNXT");
+endif;
+
+if prop("theme.prop","selected.0")=="4" then
+  theme("NextGen");
+endif;
+
+if prop("theme.prop","selected.0")=="5" then
+  theme("sense");
+endif;
+
+if prop("theme.prop","selected.0")=="6" then
+  theme("i1");
+endif;
+
+##
+# MAIN MENU- INSTALLER n MISC
+#
+menubox(
+  #-- Title
+    "Available Options",
+  
+  #-- Sub Title
+    "Please select from the menu below to modify the required features",
+  
+  #-- Icon
+    "@apps",
+    
+  #-- Will be saved in /tmp/aroma/menu.prop
+    "menu.prop",
+    
+     #-------------------------+-----------------[ Menubox Items ]-------------------------+---------------#
+     # TITLE                   |  SUBTITLE                                                 |   Item Icons  #
+     #-------------------------+-----------------------------------------------------------+---------------#	
+	
+    "Install extra apps",                 "Some extra booties over the stock rom package",             "@install",      #-- selected = 1
+    "Quit Install",               "RIP :(",     											   "@install"       #-- selected = 4
+
+);
+
+##
+# QUIT INSTALLER
+#
+if prop("menu.prop","selected")=="2" then
+#-- Exit
+	if
+	  confirm(
+		#-- Title
+		  "Exit",
+		#-- Text
+		  "Are you sure want to exit the Installer?",
+		#-- Icon (Optional)
+		  "@alert"
+	  )=="yes"
+	then
+	  #-- Exit 
+	  exit("");
+	endif;
+
+endif;
+
+
+##
+#  Select Type of Install
+#
+if prop("menu.prop","selected")=="1" then
+##
+# Sub Window 1
+#
+##
+# Sub Window with CheckBoxes
+#
+checkbox(
+  # Title
+	"Available apps",
+  
+  # Sub Title
+	"Choose what you want to install",
+ 
+  # Icon
+	"@update",
+  
+  # Will be saved in /tmp/aroma/checkbox1.prop
+	"checkbox1.prop",
+  
+  #----------------------------------[ Selectbox With Groups ]-----------------------------------#
+  # TITLE            |  SUBTITLE                                                 | Initial Value #
+  #------------------+-----------------------------------------------------------+---------------#
+	"Overall",             "Applicable across all groups",                                 2,      #-- group 1
+	"Install all",         "Wham! Bam! Thank you ma'm!",                                   1,
+	
+	"Telephony",          "",                                                            2,      #-- group 2
+	"Aosp Dialer",        "Dialer from du repo + call recording + sleeker ui",           0,      #-- item.2.1
+	"Aosp Contacts",      "Contacts from du repo",                                       0,      #-- item.2.2
+	"Aosp Messaging",     "Messaging from du repo, with a capital 'M'",                  0,      #-- item.2.3
+	
+	"Lineage",            "",                                                            2,      #-- Group 3
+	"FMRadio",            "FMradio from lineage repo",                                   0,      #-- item.3.1
+	"Recorder",			  "Sound + screen recorder from lineage repo",					 0,      #-- item.3.2
+	
+	"Misc",				  "",																2,	 #-- Group 4
+	"ViaBrowser",		  "A tiny browser from Lakor",									 0,		#-- item 4.1
+	"GCam",               "Gcam Mod by Bulkin",                                          0,     #-- item.4.2
+	"Musicolet",          "Music player from krosbits",								     0      #-- item.4.3
+
+	 #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
+);
+	
+# Installation UI
+ini_set("text_next", "Install Now");
+ini_set("icon_next", "@installbutton");
+  
+viewbox(
+  #-- Title
+    "Ready to Install",
+
+  #-- Text
+    "Booty is ready to be busted.\n\n"+
+	"Press <b>Install</b> to begin the installation.\n\n"+
+	"To review or change any of your installation settings, press <b>Back</b>.\n\n"+
+	"Press Menu -> Quit Installation to quit.",
+
+  #-- Icon
+    "@install"
+);
+
+alert( "Alert", "Installation will begin now...");
+endif;
+
+##
+# INSTALLATION PROCESS
+#
+
+if prop("menu.prop","selected")== "1" 
+then
+
+ini_set("text_next", "Next");
+ini_set("icon_next", "@next");
+
+install(
+  "Booty Smashing",
+  getvar("rom_name") + "\n" +
+  "Please wait while this blasts you up :P" +
+  "",
+  "icons/install"
+);
+
+ini_set("text_next", "Finish");
+ini_set("icon_next", "@finish");
+
+checkviewbox(
+  #-- Title
+    "Installation Completed",
+	
+  #-- Text
+    "<#selectbg_g><b>Congrats...</b></#>\n\n"+
+    "<b>Install completed</b>\n\n",
+    
+#-- Icon
+    "@welcome",
+
+  #-- Checkbox Text
+    "Reboot your device now.",
+
+  #-- Initial Checkbox value ( 0=unchecked, 1=checked ) -  (Optional, default:0)
+    "0",
+
+  #-- Save checked value in variable "reboot_it" (Optional)
+    "reboot_it"
+);
+endif;
+
+###
+# Check if reboot checkbox was checked
+
+if
+  getvar("reboot_it")=="1"
+then
+  #
+  # reboot("onfinish");   - Reboot if anything finished
+  # reboot("now");        - Reboot Directly
+  # reboot("disable");    - If you set reboot("onfinish") before, use this command to revert it.
+  #
+  reboot("onfinish");
+endif;

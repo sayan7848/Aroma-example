@@ -1,0 +1,78 @@
+################################################################### UPDATER SCRIPT #############################################################################
+
+ui_print("-> Initialising....");
+ui_print("-> Please Wait....");
+
+if file_getprop("/tmp/aroma-data/menu.prop","selected") == "1" then
+    ui_print("-> Installing Extra stuffs for DU-UNOFFICIAL-MIDO");
+	ui_print("-> MOUNTING SYSTEM...");
+	run_program("/sbin/busybox", "mount", "/system");
+
+    #--CHECK BOX 1
+    ifelse (
+    
+    file_getprop("/tmp/aroma/checkbox1.prop","item.1.1") == "1",
+    
+    (
+        ui_print("-> INSTALLING ALL ITEMS");
+        ui_print("-> Installing Aosp Dialer");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-2.1", "/system");
+    	ui_print("-> Installing Aosp Contacts");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-2.2", "/system");
+    	ui_print("-> Installing Aosp Messaging");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-2.3", "/system");
+    	ui_print("-> Installing FMRadio");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-3.1", "/system");
+    	ui_print("-> Installing Recorder");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-3.2", "/system");
+    	ui_print("-> Installing ViaBrowser");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-4.1", "/system");
+    	ui_print("-> Installing GCcamMod");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-4.2", "/system");
+    	ui_print("-> Installing Musicolet");
+    	package_extract_dir("AROMA/CHECKBOX1/ITEM-4.3", "/system");
+    ),
+    
+    (
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.2.1") == "1" then
+    		ui_print("-> Installing Aosp Dialer");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-2.1", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.2.2") == "1" then
+    		ui_print("-> Installing Aosp Contacts");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-2.2", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.2.3") == "1" then
+    		ui_print("-> Installing Aosp Messaging");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-2.3", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.3.1") == "1" then
+    		ui_print("-> Installing FMRadio");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-3.1", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.3.2") == "1" then
+    		ui_print("-> Installing Recorder");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-3.2", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.4.1") == "1" then
+    		ui_print("-> Installing ViaBrowser");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-4.1", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.4.2") == "1" then
+    		ui_print("-> Installing GCamMod");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-4.2", "/system");
+    	endif;
+    	if file_getprop("/tmp/aroma/checkbox1.prop","item.4.3") == "1" then
+    		ui_print("-> Installing Musicolet");
+			package_extract_dir("AROMA/CHECKBOX1/ITEM-4.3", "/system");
+    	endif;
+    )
+    
+    );	
+    ui_print("-> Finished Installation...!");
+    ui_print("-> Enjoy...");
+    ui_print("-> ...");
+    ui_print("-> Done....");
+endif;
+run_program("/sbin/busybox", "umount", "/system");
+show_progress(1, 0);
